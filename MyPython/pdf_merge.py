@@ -95,8 +95,7 @@ def merge_pdfs_with_bookmarks(pdf_files, output_pdf):
 ##        pdf_merger.add_page(pdf_reader.getPage(0))
 ##        print(range(len(pdf_reader.pages)))
         # Loop through all pages in the current PDF file
-        # Remove the last page due to no meanful content
-        for page_num in range(len(pdf_reader.pages)-1):
+        for page_num in range(len(pdf_reader.pages)):
             pdf_merger.add_page(pdf_reader.pages[page_num])
         
         with open(output_pdf, 'wb') as output:
