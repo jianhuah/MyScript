@@ -1,12 +1,49 @@
+################################################################################
+'''
+
+################################################################################
+Author:    Jianhua
+Email:     jianhuah@126.com
+Date:      2023-12-11
+################################################################################
+
+################################################################################
+Purpose:     This script performs pdf files merge to a single pdf file.
+Description: The script reads pdf files from folder, merge the pdf files by 
+             PDF2 (V3.0.0) to a single pdf file, also insert the bookmark for
+             each input pdf file with its file name.
+Environment: Win10 OS
+             Python V3.9.6
+             pip install PDF2 V3.0.0
+################################################################################
+
+################################################################################
+Update History:
+  Date          Comments
+- 2023-12-11    Implemented initial version pdf_merge feature.
+################################################################################
+
+'''
+################################################################################
+
 import os
 import PyPDF2
-##import pyautogui
 from pathlib import Path
 from PyPDF2 import PdfMerger
 from PyPDF2 import PdfWriter
 from PyPDF2 import PdfReader, PdfWriter
 
+# Function to get all files from the specified folder path
 def get_files_from_folder(folder_path):
+    '''
+    Get all files from the specified folder path, include files in the sub-folders.
+
+    Args:
+        folder_path (str): The input folder path.
+
+    Returns:
+        string list: All files in the input folder path.
+    '''
     folder_path = Path(folder_path)
     all_files = list(folder_path.rglob('*'))
 
@@ -15,11 +52,25 @@ def get_files_from_folder(folder_path):
 
     return all_files
 
+
+# Function to check if the specified file is PDF type or not
 def is_pdf_file(file_path):
     _, file_extension = os.path.splitext(file_path)
     return file_extension.lower() == '.pdf'
 
+
+# Function to merge multiple pdf files to a single pdf file
+# some comment codes are purpose for debugging 
 def merge_pdfs_with_bookmarks(pdf_files, output_pdf):
+    '''
+    Merge all pdf files to a single pdf file.
+
+    Args:
+        pdf_files (string list): The input pdf files with their path.
+
+    Returns:
+        NULL: But a single merged pdf file created.
+    '''
 ##    pdf_merger = PdfMerger()
     pdf_merger = PdfWriter()
     for index, pdf_file in enumerate(pdf_files):
