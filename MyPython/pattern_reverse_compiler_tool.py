@@ -46,15 +46,16 @@ if __name__ == "__main__":
 ##        print(file)
         if is_pat_file(file):
             pat_files_list.append(file)
-            #start reverse compile pat to atp
-            result = subprocess.run(["aprc", file, "-force"], capture_output=True, text=True)
-            print("Return code:", result.returncode)
-            print("Output:", result.stdout)
-
+    #get counts of atp files
+    total_files_to_compile=len(pat_files_list)
+    i=0
+    for file in pat_files_list:
+        i+=1
+        print("Pattern reverse compile progressing:",i,"/",total_files_to_compile)
+        #start reverse compile pat to atp
+        result = subprocess.run(["aprc", file, "-force"], capture_output=True, text=True)
+        print("    Pattern reverse compile done:", file)
     # Pause the script
     input("Press Enter to continue...")
-### Example 1: Run a simple command
-##result = subprocess.run(["aprc", "-help"], capture_output=True, text=True)
-##print("Return code:", result.returncode)
-##print("Output:", result.stdout)
+
 
