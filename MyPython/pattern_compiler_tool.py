@@ -59,7 +59,7 @@ if __name__ == "__main__":
         #start reverse compile pat to atp
         #switches=str(file)+switches
         #print (switches)
-        cmd_line='apc "'+str(file)+ '" -pinmap_workbook "'+pm+'" -digital_inst HSDMQ -opcode_mode single'
+        cmd_line='apc "'+str(file)+ '" -pinmap_workbook "'+pm+'" -digital_inst HSDMQ -opcode_mode single -comments'
         ##print (cmd_line)
         result = subprocess.run(cmd_line, shell=True)
         #result.wait()
